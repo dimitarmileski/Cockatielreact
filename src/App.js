@@ -1,14 +1,23 @@
-import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import LoginButton from './Components/Authentication/LoginButton'
+import LogoutButton from './Components/Authentication/LogoutButton'
+import UserProfile from './Components/Authentication/UserProfile'
+import {useAuth0} from '@auth0/auth0-react'
 
-function App() {
-  return (
+
+const App =() => {
+
+  const {isAuthenticated} = useAuth0()
+
+  console.log(isAuthenticated)
+
+  return ( 
       <>
-      <Button onClick={ () => console.log('button click')}>Yeah</Button>
-
-      
+        <LoginButton />
+        <LogoutButton /> 
+        <UserProfile />
       </>
-  );
+  )
 }
 
 export default App;
