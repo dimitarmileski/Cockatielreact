@@ -8,7 +8,7 @@ const UserProfile = () =>{
     return (
         <>
             <div>
-                {JSON.stringfy(user, null ,2)}
+                {JSON.stringify(user, null ,2)}
             </div>
         </>
 
