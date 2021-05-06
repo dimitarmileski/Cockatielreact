@@ -1,32 +1,22 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import LoginButton from './Components/Authentication/LoginButton'
-import LogoutButton from './Components/Authentication/LogoutButton'
-import UserProfile from './Components/Authentication/UserProfile'
-import {useAuth0} from '@auth0/auth0-react'
-import PageRouter from './Components/Views/PageRouter'
-import { BrowserRouter as Router } from "react-router-dom"
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-const App =() => {
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { useAuth0 } from '@auth0/auth0-react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import UpperNav from './Components/UI/UpperNav'
+import HomePage from './Components/Views/HomePage'
+import Footer from './Components/UI/Footer'
 
-  const {isAuthenticated} = useAuth0()
+const App = () => {
+  const { isAuthenticated } = useAuth0()
 
-  console.log(isAuthenticated)
+  return (
+    <>
+      <UpperNav />
 
-  return ( 
-      <>
-        <LoginButton />
-        <LogoutButton /> 
-        <UserProfile />
+      <HomePage />
 
-        <Router>
-          <PageRouter />
-          <Link to="/Users">Users</Link>
-        </Router>
-
-
-     
-      </>
+      <Footer />
+    </>
   )
 }
 
-export default App;
+export default App
