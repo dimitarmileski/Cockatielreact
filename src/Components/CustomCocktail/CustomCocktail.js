@@ -31,10 +31,11 @@ const CustomCocktail = () => {
   }
 
   return isAuthenticated ? (
-    <Container>
-      <Form onSubmit={(e) => handleSubmit(e)}>
+    <div><h1 style={{textAlign:"center"}}>Креирање коктел</h1>
+    <Container  style={{background:"#fdcb6e", marginTop:"20px", marginBottom:"20px", padding:"20px", borderRadius:"10px", width:"50%"}}>
+      <Form style={{background:"#fdcb6e"}} onSubmit={(e) => handleSubmit(e)}>
         <Form.Group controlId='CoctailName'>
-          <Form.Label>Име на коктел</Form.Label>
+          <Form.Label style={{color:"white"}}>Име на коктел</Form.Label>
           <Form.Control
             required
             type='coctailName'
@@ -42,7 +43,7 @@ const CustomCocktail = () => {
           />
         </Form.Group>
         <Form.Group controlId='Alcohol'>
-          <Form.Label>Алкохол</Form.Label>
+          <Form.Label style={{color:"white"}}>Алкохол</Form.Label>
           <Form.Control
             required
             as='select'
@@ -58,7 +59,7 @@ const CustomCocktail = () => {
           </Form.Control>
         </Form.Group>
         <Form.Group controlId='Liqueurs'>
-          <Form.Label>Ликер</Form.Label>
+          <Form.Label style={{color:"white"}}>Ликер</Form.Label>
           <Form.Control
             required
             as='select'
@@ -73,7 +74,7 @@ const CustomCocktail = () => {
           </Form.Control>
         </Form.Group>
         <Form.Group controlId='Soda'>
-          <Form.Label>Сок</Form.Label>
+          <Form.Label style={{color:"white"}}>Сок</Form.Label>
           <Form.Control
             required
             as='select'
@@ -87,7 +88,7 @@ const CustomCocktail = () => {
           </Form.Control>
         </Form.Group>
         <Form.Group controlId='Other'>
-          <Form.Label>Друго</Form.Label>
+          <Form.Label style={{color:"white"}}>Друго</Form.Label>
           <Form.Control
             required
             as='select'
@@ -100,12 +101,13 @@ const CustomCocktail = () => {
           </Form.Control>
         </Form.Group>
         <Form.Group>
-          <Button variant='primary' type='submit'>
+          <Button variant='warning' type='submit'>
             Додади
           </Button>{' '}
         </Form.Group>
       </Form>
     </Container>
+    </div>
   ) : (
     <div>Логирајте се да можете да пратите коктел</div>
   )
