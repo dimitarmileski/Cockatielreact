@@ -3,7 +3,7 @@ import {Navbar,Form,Nav, NavLink,}from'react-bootstrap'
 
 const Footer = () => {
     return (
-        <Navbar bg="dark" variant="dark" fixed="bottom"  >
+        <Navbar bg="dark" variant="dark" >
           <Navbar.Brand href="#home">Cockatiel</Navbar.Brand>
           <Nav className="mr-auto">
           </Nav>
