@@ -4,6 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 
 const CustomCocktail = () => {
   const { isAuthenticated } = useAuth0()
+  const [name, setName] = useState()
   const [alcohol, setAlcohol] = useState()
   const [sok, setSok] = useState()
   const [other, setOther] = useState()
@@ -20,7 +21,10 @@ const CustomCocktail = () => {
       <Form onSubmit={(e) => handleSubmit(e)}>
         <Form.Group controlId='CoctailName'>
           <Form.Label>Име на коктел</Form.Label>
-          <Form.Control type='coctailName' />
+          <Form.Control
+            type='coctailName'
+            onChange={(e) => setName(e.target.value)}
+          />
         </Form.Group>
         <Form.Group controlId='Alcohol'>
           <Form.Label>Алкохол</Form.Label>
