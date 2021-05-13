@@ -7,7 +7,7 @@ import ListAllCocktails from '../ViewCocktails/ListAllCocktails'
 import CustomCoctails from '../CustomCocktail/CustomCocktail'
 import UserProfile from '../Authentication/UserProfile'
 import { BrowserRouter as Router, Route, Link, Switch  } from "react-router-dom"
-
+import StripePayment from '../Payment/StripePayment'
 const PageRouter = () => {
     return (
 
@@ -34,6 +34,10 @@ const PageRouter = () => {
 
                 <Route path="/UserProfile">
                     <UserProfile />
+                </Route>
+
+                <Route path="/StripePayment">
+                    <StripePayment />
                 </Route>
                 
             
