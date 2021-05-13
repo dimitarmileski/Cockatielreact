@@ -1,20 +1,48 @@
 import React from 'react'
 //import {Switch, Route} from 'react-router-dom'
-import { BrowserRouter as Route, Switch } from "react-router-dom"
 import LoginButton from '../Authentication/LoginButton'
+import HomePage from './HomePage'
+import AboutUs from './AboutUs'
+import ListAllCocktails from '../ViewCocktails/ListAllCocktails'
+import CustomCoctails from '../CustomCocktail/CustomCocktail'
+import UserProfile from '../Authentication/UserProfile'
+import { BrowserRouter as Router, Route, Link, Switch  } from "react-router-dom"
+import StripePayment from '../Payment/StripePayment'
 const PageRouter = () => {
     return (
 
-        <div>
-            <Switch>
+            <Switch>            
                 <Route exact path="/">
-                <LoginButton/>
+                    <HomePage />
                 </Route>
-                <Route  path="/Users">
-                <LoginButton/>
+               
+
+                <Route path="/ListAllCocktails">
+                    <ListAllCocktails />
                 </Route>
+
+                
+                <Route path="/CustomCoctails">
+                    <CustomCoctails />
+                </Route>
+               
+               
+                <Route path="/AboutUs">
+                    <AboutUs />
+                </Route>
+                
+
+                <Route path="/UserProfile">
+                    <UserProfile />
+                </Route>
+
+                <Route path="/StripePayment">
+                    <StripePayment />
+                </Route>
+                
+            
             </Switch>
-        </div>
+        
     )
 }
 
