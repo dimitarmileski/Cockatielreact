@@ -22,13 +22,13 @@ const HomePage = () => {
     randomDrink = request.data.drinks[0]
 
     return (
-      <div style={{ marginTop: '4%' }}>
+      <div>
         <Carousel>
           <Carousel.Item>
             <img
-              className="d-block w-100"
+              className='d-block w-100'
               src={bird}
-              alt="Second slide"
+              alt='Second slide'
               style={{ height: '650px', width: '500px' }}
             />
 
@@ -49,9 +49,9 @@ const HomePage = () => {
 
           <Carousel.Item>
             <img
-              className="d-block w-100"
+              className='d-block w-100'
               src={randomDrink.strDrinkThumb}
-              alt="First slide"
+              alt='First slide'
               style={{ height: '650px', width: '500px' }}
             />
             <Carousel.Caption
@@ -84,9 +84,9 @@ const HomePage = () => {
 
           <Carousel.Item>
             <img
-              className="d-block w-100"
+              className='d-block w-100'
               src={pay}
-              alt="Third slide"
+              alt='Third slide'
               style={{ height: '650px', width: '500px' }}
             />
 
