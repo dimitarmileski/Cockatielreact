@@ -1,25 +1,17 @@
 import React from 'react'
-import {Card,Button} from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap'
 
-const CocktailCard = (
-    {Title,Content}
-) => {
-
-    return (
-
-        <div>
-        <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
+const CocktailCard = ({ Title, Content }) => {
+  return (
+    <div>
+      <Card style={{ width: '18rem' }}>
         <Card.Body>
-            <Card.Title>{Title}</Card.Title>
-            <Card.Text>
-                {Content}
-            </Card.Text>
-            <Button variant="danger" >Go</Button>
+          <Card.Title>{Title}</Card.Title>
+          <Card.Text>{Content}</Card.Text>
         </Card.Body>
-        </Card>
-        </div>
-    )
+      </Card>
+    </div>
+  )
 }
 
 export default CocktailCard
