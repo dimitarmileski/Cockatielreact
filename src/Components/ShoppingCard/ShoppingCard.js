@@ -1,18 +1,19 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, Card, Button, Row, Col } from 'react-bootstrap'
 import { useAxiosGet } from '../Hooks/httprequest'
-import { Card, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 
 const ShoppingCard = () => {
   const req = useAxiosGet('https://605b3c3427f0050017c0698d.mockapi.io/ordered')
 
+  
   if (req.data) {
     return (
       <Container>
         <h1 style={{ textAlign: 'center' }}>Кошничка</h1>
+        <Row>
         {req.data.map((entry, index) => (
           <Container key={index}>
+            <Col>
             <Card style={{ width: '18rem' }}>
               <Card.Body>
                 <Card.Title>Име: {entry.orderName}</Card.Title>
@@ -22,13 +23,14 @@ const ShoppingCard = () => {
                 <Card.Text>
                   <strong>Доза: {entry.dose} </strong>
                 </Card.Text>
-                <Button variant='primary'>Remove</Button>
+                <Button variant='warning'>Remove</Button>
               </Card.Body>
             </Card>
+            </Col>
             <br />
           </Container>
         ))}
-        <Link to='/StripePayment'>Плати</Link>
+        </Row>
       </Container>
     )
   } else {

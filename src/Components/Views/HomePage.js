@@ -4,7 +4,9 @@ import { useAxiosGet } from '../Hooks/httprequest'
 import { useAuth0 } from '@auth0/auth0-react'
 import pay from '../../images/pay.jpg'
 import bird from '../../images/bird.jpg'
-
+import coctail1 from '../../images/coctail1.jpg'
+import coctail2 from '../../images/coctail2.jpg'
+import coctail3 from '../../images/coctail3.jpg'
 const HomePage = () => {
   const url = `https://www.thecocktaildb.com/api/json/v1/1/random.php`
   const request = useAxiosGet(url)
@@ -27,7 +29,7 @@ const HomePage = () => {
           <Carousel.Item>
             <img
               className='d-block w-100'
-              src={bird}
+              src={coctail3}
               alt='Second slide'
               style={{ height: '650px', width: '500px' }}
             />
@@ -85,10 +87,12 @@ const HomePage = () => {
           <Carousel.Item>
             <img
               className='d-block w-100'
-              src={pay}
+              src={coctail1}
               alt='Third slide'
               style={{ height: '650px', width: '500px' }}
             />
+
+        
 
             <Carousel.Caption
               style={{
@@ -101,6 +105,14 @@ const HomePage = () => {
               <div></div>
             </Carousel.Caption>
           </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className='d-block w-100'
+              src={coctail2}
+              alt='Third slide'
+              style={{ height: '650px', width: '500px' }}
+            />
+            </Carousel.Item>
         </Carousel>
       </div>
     )
