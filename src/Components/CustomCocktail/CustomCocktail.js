@@ -11,7 +11,13 @@ const CustomCocktail = () => {
   const [liker, setLiker] = useState()
 
   const handleSubmit = (e) => {
-    let cocktail = { alcohol: alcohol, sok: sok, other: other, liker: liker }
+    let cocktail = {
+      alcohol: alcohol,
+      sok: sok,
+      other: other,
+      liker: liker,
+      name: name,
+    }
     console.log(cocktail)
     e.preventDefault()
   }
