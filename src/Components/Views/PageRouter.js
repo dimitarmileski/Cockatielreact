@@ -6,44 +6,41 @@ import AboutUs from './AboutUs'
 import ListAllCocktails from '../ViewCocktails/ListAllCocktails'
 import CustomCoctails from '../CustomCocktail/CustomCocktail'
 import UserProfile from '../Authentication/UserProfile'
-import { BrowserRouter as Router, Route, Link, Switch  } from "react-router-dom"
+import ShoppingCard from '../ShoppingCard/ShoppingCard'
+import { BrowserRouter as Route, Switch } from 'react-router-dom'
 import StripePayment from '../Payment/StripePayment'
 const PageRouter = () => {
-    return (
+  return (
+    <Switch>
+      <Route exact path='/'>
+        <HomePage />
+      </Route>
 
-            <Switch>            
-                <Route exact path="/">
-                    <HomePage />
-                </Route>
-               
+      <Route path='/ListAllCocktails'>
+        <ListAllCocktails />
+      </Route>
 
-                <Route path="/ListAllCocktails">
-                    <ListAllCocktails />
-                </Route>
+      <Route path='/CustomCoctails'>
+        <CustomCoctails />
+      </Route>
 
-                
-                <Route path="/CustomCoctails">
-                    <CustomCoctails />
-                </Route>
-               
-               
-                <Route path="/AboutUs">
-                    <AboutUs />
-                </Route>
-                
+      <Route path='/AboutUs'>
+        <AboutUs />
+      </Route>
 
-                <Route path="/UserProfile">
-                    <UserProfile />
-                </Route>
+      <Route path='/UserProfile'>
+        <UserProfile />
+      </Route>
 
-                <Route path="/StripePayment">
-                    <StripePayment />
-                </Route>
-                
-            
-            </Switch>
-        
-    )
+      <Route path='/StripePayment'>
+        <StripePayment />
+      </Route>
+
+      <Route path='/Cart'>
+        <ShoppingCard />
+      </Route>
+    </Switch>
+  )
 }
 
 export default PageRouter

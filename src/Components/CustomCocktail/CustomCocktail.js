@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Button, Form, Container } from 'react-bootstrap'
 import { useAuth0 } from '@auth0/auth0-react'
+import axios from 'axios'
 
 const CustomCocktail = () => {
   const { isAuthenticated } = useAuth0()
@@ -10,7 +11,7 @@ const CustomCocktail = () => {
   const [other, setOther] = useState()
   const [liker, setLiker] = useState()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     let cocktail = {
       alcohol: alcohol,
       sok: sok,
@@ -18,7 +19,14 @@ const CustomCocktail = () => {
       liker: liker,
       name: name,
     }
-    console.log(cocktail)
+    axios
+      .post(
+        'https://605b3c3427f0050017c0698d.mockapi.io/customcocktails',
+        cocktail
+      )
+      .then((e) => alert('Успешно направен коктел'))
+      .catch((error) => console.log(error))
+
     e.preventDefault()
   }
 
@@ -28,6 +36,7 @@ const CustomCocktail = () => {
         <Form.Group controlId='CoctailName'>
           <Form.Label>Име на коктел</Form.Label>
           <Form.Control
+            required
             type='coctailName'
             onChange={(e) => setName(e.target.value)}
           />
@@ -35,6 +44,7 @@ const CustomCocktail = () => {
         <Form.Group controlId='Alcohol'>
           <Form.Label>Алкохол</Form.Label>
           <Form.Control
+            required
             as='select'
             onChange={(e) => {
               setAlcohol(e.target.value)
@@ -50,6 +60,7 @@ const CustomCocktail = () => {
         <Form.Group controlId='Liqueurs'>
           <Form.Label>Ликер</Form.Label>
           <Form.Control
+            required
             as='select'
             onChange={(e) => {
               setLiker(e.target.value)
@@ -64,6 +75,7 @@ const CustomCocktail = () => {
         <Form.Group controlId='Soda'>
           <Form.Label>Сок</Form.Label>
           <Form.Control
+            required
             as='select'
             onChange={(e) => {
               setSok(e.target.value)
@@ -77,6 +89,7 @@ const CustomCocktail = () => {
         <Form.Group controlId='Other'>
           <Form.Label>Друго</Form.Label>
           <Form.Control
+            required
             as='select'
             onChange={(e) => {
               setOther(e.target.value)
