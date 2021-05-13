@@ -12,37 +12,42 @@ const UserProfile = () => {
   if (req.data) {
     return isAuthenticated ? (
       <Container>
-        <Card>
+        <Card style={{backgroundColor: '#d35400', color: 'white'}}>
           <Card.Body>
             <Card.Text>
-              <div>
+              <div className='row'>
                 <img
                   className='rounded-circle'
                   alt='500x500'
                   src={user ? user.picture : null}
                   data-holder-rendered='true'
                 />
+                <Card.Title style={{fontSize: '50px', fontStyle: 'center', marginTop: '10px', marginLeft: '10px'}}> {user ? user.name : null} </Card.Title>
               </div>
               <div className='col'>
-                <Card.Title> {user ? user.name : null} </Card.Title>
+
                 <hr />
                 <div> {user ? user.given_name : null} </div>
                 <div> {user ? user.family_name : null} </div>
                 <div> {user ? user.email : null} </div>
               </div>
+              <hr/>
             </Card.Text>
 
             <div>
               {' '}
-              <b> Recently purchased: </b>{' '}
+              <b> Последно купени: </b>{' '}
             </div>
+            <br/>
             <Row>
               {req.data.map((entry, index) => (
                 <Col key={index}>
                   <CocktailCard
                     Title={entry.orderName}
                     Content={entry.orderCat}
+                    Color={'#f39c12'}
                   />
+                  <br/>
                 </Col>
               ))}
             </Row>
