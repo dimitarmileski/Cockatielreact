@@ -21,13 +21,9 @@ import { useAxiosGet } from '../Hooks/httprequest'
 const ListAllCocktails = () => {
 
   const [letter, setLetter] = useState('a')
+  const [query, setQuery] = useState(null)
 
-  const handleChange = (event) => {
-    //setLetter(event.target.value.replace(/[^a-zA-Z\s]/, ''))
-    console.log(event.target.value.replace(/[^a-zA-Z\s]/, ''))
-  }
-
-  const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`
+  const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${letter}`
 
   const request = useAxiosGet(url)
 
@@ -46,7 +42,7 @@ const ListAllCocktails = () => {
           gutterBottom
           variant='h4'
           align='center'
-          // fontStyle=""
+         
         >
           Нај популарни
         </Typography>
@@ -60,14 +56,14 @@ const ListAllCocktails = () => {
            
               />
             
-            <Grid container item xs={12} spacing={3} >
-            
-              {/* <GridList padding={20}> */}
-              
-              
-           
+            <Grid container item xs={12} spacing={3} >          
+          <div className='input-container'>
+            <input type='text' onChange={(e) => setQuery(e.target.value)} />
+            <Button onClick={() => setLetter(query)}>Пребарај</Button>
+
+            <Grid container justify='space-evenly'>
               {request.data.drinks
-                .filter((item) => {
+                ?.filter((item) => {
                   if (letter == '') {
                     return item
                   } else if (
@@ -128,6 +124,16 @@ const ListAllCocktails = () => {
                           <br />
                           {`${item.strMeasure1}`}
                         </Typography>
+                        <Typography
+                          color='textSecondary'
+                          variant='subtitle2'
+                          overflowWrap='break-word'
+                          word-break='break-all'
+                        >
+                          <span style={{ fontWeight: '700' }}>Цена:</span>
+                          <br />
+                          {item.strDrink.length * 50}
+                        </Typography>
                       </CardContent>
                       <Button variant="warning" style={{marginBottom:"30px",marginLeft:"30px"}} 
                         onClick={() => {
@@ -135,6 +141,7 @@ const ListAllCocktails = () => {
                             orderName: item.strDrink,
                             orderCat: item.strCategory,
                             dose: item.strMeasure1,
+                            price: item.strDrink.length * 50,
                           })
 
                           axios
@@ -142,7 +149,7 @@ const ListAllCocktails = () => {
                               'https://605b3c3427f0050017c0698d.mockapi.io/ordered',
                               order[0]
                             )
-                            .then((m) => alert('Naracano'))
+                            .then((m) => alert('Нарачано'))
                             .catch((error) => console.log(error))
                         }}
                       >
