@@ -37,12 +37,13 @@ const UserProfile = () => {
               <b> Recently purchased: </b>{' '}
             </div>
             <Row>
-              {req.data.map((entry, index) => (
+              {req.data.slice(0, 3).map((entry, index) => (
                 <Col key={index}>
                   <CocktailCard
                     Title={entry.orderName}
                     Content={entry.orderCat}
                   />
+                  <br />
                 </Col>
               ))}
             </Row>

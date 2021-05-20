@@ -16,13 +16,9 @@ import { useAxiosGet } from '../Hooks/httprequest'
 
 const ListAllCocktails = () => {
   const [letter, setLetter] = useState('a')
+  const [query, setQuery] = useState(null)
 
-  const handleChange = (event) => {
-    //setLetter(event.target.value.replace(/[^a-zA-Z\s]/, ''))
-    console.log(event.target.value.replace(/[^a-zA-Z\s]/, ''))
-  }
-
-  const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`
+  const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${letter}`
 
   const request = useAxiosGet(url)
 
@@ -46,11 +42,12 @@ const ListAllCocktails = () => {
 
         <div>
           <div className='input-container'>
-            <input type='text' onChange={handleChange} />
+            <input type='text' onChange={(e) => setQuery(e.target.value)} />
+            <Button onClick={() => setLetter(query)}>Пребарај</Button>
 
             <Grid container justify='space-evenly'>
               {request.data.drinks
-                .filter((item) => {
+                ?.filter((item) => {
                   if (letter == '') {
                     return item
                   } else if (

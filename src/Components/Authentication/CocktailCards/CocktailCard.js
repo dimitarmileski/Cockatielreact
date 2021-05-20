@@ -6,8 +6,8 @@ const CocktailCard = ({ Title, Content }) => {
     <div>
       <Card style={{ width: '18rem' }}>
         <Card.Body>
-          <Card.Title>{Title}</Card.Title>
-          <Card.Text>{Content}</Card.Text>
+          <Card.Title>Име: {Title}</Card.Title>
+          <Card.Text>Категорија: {Content}</Card.Text>
         </Card.Body>
       </Card>
     </div>
