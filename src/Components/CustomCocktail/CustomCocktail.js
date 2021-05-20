@@ -112,4 +112,4 @@ const CustomCocktail = () => {
     <div>Логирајте се да можете да пратите коктел</div>
   )
 }
-export default CustomCocktail
+export default 

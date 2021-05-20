@@ -40,7 +40,7 @@ const UserProfile = () => {
             </div>
             <br/>
             <Row>
-              {req.data.map((entry, index) => (
+              {req.data.slice(0,3).map((entry, index) => (
                 <Col key={index}>
                   <CocktailCard
                     Title={entry.orderName}
