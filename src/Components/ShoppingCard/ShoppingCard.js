@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import { Card, Button, Row, Col } from 'react-bootstrap'
@@ -5,8 +6,10 @@ import { Link } from 'react-router-dom'
 import Axios from 'axios'
 import axios from 'axios'
 
+
 const ShoppingCard = () => {
   const url = 'https://605b3c3427f0050017c0698d.mockapi.io/ordered'
+
 
   const [res, setData] = useState({
     loading: false,
@@ -86,8 +89,7 @@ const ShoppingCard = () => {
             </Col>
           ))}
         </Row>
-
-        <Link to='/StripePayment'>Плати</Link>
+       <Link to='/StripePayment'>Плати</Link>
       </Container>
     )
   } else {

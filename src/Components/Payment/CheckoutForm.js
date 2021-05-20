@@ -102,15 +102,15 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
       fontSize: "16px",
       iconColor: "#fff",
       "::placeholder": {
-        color: "#87bbfd"
+        color: "#fff"
       }
     },
     invalid: {
-      iconColor: "#FFC7EE",
-      color: "#FFC7EE"
+      iconColor: "#fff",
+      color: "#fff"
     },
     complete: {
-      iconColor: "#cbf4c9"
+      iconColor: "#fff"
     }
   };
 
@@ -137,7 +137,7 @@ const CheckoutForm = ({ price, onSuccessfulCheckout }) => {
       <Row>
         {/* TIP always disable your submit button while processing payments */}
         <SubmitButton disabled={isProcessing || !stripe}>
-          {isProcessing ? "Processing..." : `Pay $${/*price*/ 30}`}
+          {isProcessing ? "Processing..." : `Плати 180 ден.`}
         </SubmitButton>
       </Row>
     </form>
