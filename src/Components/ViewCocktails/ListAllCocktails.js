@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import Grid from '@material-ui/core/Grid'
@@ -14,7 +13,6 @@ import Link from 'react-router-dom'
 import axios from 'axios'
 
 import { useAxiosGet } from '../Hooks/httprequest'
-
 
 const ListAllCocktails = () => {
   const [letter, setLetter] = useState('a')
@@ -107,6 +105,16 @@ const ListAllCocktails = () => {
                           <br />
                           {`${item.strMeasure1}`}
                         </Typography>
+                        <Typography
+                          color='textSecondary'
+                          variant='subtitle2'
+                          overflowWrap='break-word'
+                          word-break='break-all'
+                        >
+                          <span style={{ fontWeight: '700' }}>Цена:</span>
+                          <br />
+                          {item.strDrink.length * 50}
+                        </Typography>
                       </CardContent>
                       <Button
                         onClick={() => {
@@ -114,6 +122,7 @@ const ListAllCocktails = () => {
                             orderName: item.strDrink,
                             orderCat: item.strCategory,
                             dose: item.strMeasure1,
+                            price: item.strDrink.length * 50,
                           })
 
                           axios
@@ -121,7 +130,7 @@ const ListAllCocktails = () => {
                               'https://605b3c3427f0050017c0698d.mockapi.io/ordered',
                               order[0]
                             )
-                            .then((m) => alert('Naracano'))
+                            .then((m) => alert('Нарачано'))
                             .catch((error) => console.log(error))
                         }}
                       >

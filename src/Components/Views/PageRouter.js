@@ -32,10 +32,8 @@ const PageRouter = () => {
         <UserProfile />
       </Route>
 
-  
       <Route path='/Cart'>
         <ShoppingCard />
-        <StripePayment />
       </Route>
     </Switch>
   )
