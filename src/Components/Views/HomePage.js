@@ -69,18 +69,6 @@ const HomePage = () => {
               <div>
                 Цена: {(price = Math.floor(Math.random() * 500) + 100)} ден
               </div>
-              <Button
-                onClick={() => {
-                  order.push({
-                    orderName: randomDrink.strDrink,
-                    orderCategory: randomDrink.strCategory,
-                    orderPrice: price,
-                  })
-                  console.log(order)
-                }}
-              >
-                Нарачај одма
-              </Button>
             </Carousel.Caption>
           </Carousel.Item>
 
