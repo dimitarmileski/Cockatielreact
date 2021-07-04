@@ -1,53 +1,64 @@
-import React from 'react'
-import { useAuth0 } from '@auth0/auth0-react'
-import { Card, Container, Row, Col } from 'react-bootstrap'
-import CocktailCard from './CocktailCards/CocktailCard'
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Card, Container, Row, Col } from "react-bootstrap";
+import CocktailCard from "./CocktailCards/CocktailCard";
 
-import { useAxiosGet } from '../Hooks/httprequest'
+import { useAxiosGet } from "../Hooks/httprequest";
 
 const UserProfile = () => {
-  const { user, isAuthenticated } = useAuth0()
+  const { user, isAuthenticated } = useAuth0();
 
-  const req = useAxiosGet('https://605b3c3427f0050017c0698d.mockapi.io/ordered')
+  const req = useAxiosGet(
+    "https://605b3c3427f0050017c0698d.mockapi.io/ordered"
+  );
   if (req.data) {
     return isAuthenticated ? (
       <Container>
-        <Card style={{backgroundColor: '#d35400', color: 'white'}}>
+        <Card style={{ backgroundColor: "#d35400", color: "white" }}>
           <Card.Body>
             <Card.Text>
-              <div className='row'>
+              <div className="row">
                 <img
-                  className='rounded-circle'
-                  alt='500x500'
+                  className="rounded-circle"
+                  alt="500x500"
                   src={user ? user.picture : null}
-                  data-holder-rendered='true'
+                  data-holder-rendered="true"
                 />
-                <Card.Title style={{fontSize: '50px', fontStyle: 'center', marginTop: '10px', marginLeft: '10px'}}> {user ? user.name : null} </Card.Title>
+                <Card.Title
+                  style={{
+                    fontSize: "50px",
+                    fontStyle: "center",
+                    marginTop: "10px",
+                    marginLeft: "10px",
+                  }}
+                >
+                  {" "}
+                  {user ? user.name : null}{" "}
+                </Card.Title>
               </div>
-              <div className='col'>
-
+              <div className="col">
                 <hr />
                 <div> {user ? user.given_name : null} </div>
                 <div> {user ? user.family_name : null} </div>
                 <div> {user ? user.email : null} </div>
               </div>
-              <hr/>
+              <hr />
             </Card.Text>
 
             <div>
-              {' '}
-              <b> Последно купени: </b>{' '}
+              {" "}
+              <b> Последно купени: </b>{" "}
             </div>
-            <br/>
+            <br />
             <Row>
-              {req.data.slice(0,3).map((entry, index) => (
+              {req.data.slice(0, 3).map((entry, index) => (
                 <Col key={index}>
                   <CocktailCard
                     Title={entry.orderName}
                     Content={entry.orderCat}
-                    Color={'#f39c12'}
+                    Color={"#f39c12"}
                   />
-                  <br/>
+                  <br />
                 </Col>
               ))}
             </Row>
@@ -56,10 +67,10 @@ const UserProfile = () => {
       </Container>
     ) : (
       <div>Најавете се да ја видите корисничката сметка</div>
-    )
+    );
   } else {
-    return <></>
+    return <></>;
   }
-}
+};
 
-export default UserProfile
+export default UserProfile;

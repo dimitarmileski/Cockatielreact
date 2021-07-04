@@ -6,20 +6,18 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import InputAdornment from '@material-ui/core/InputAdornment'
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '@material-ui/icons/Search'
 import FormControl from '@material-ui/core/FormControl'
 import Input from '@material-ui/core/Input'
 import Link from 'react-router-dom'
-import InputBase from '@material-ui/core/InputBase';
+import InputBase from '@material-ui/core/InputBase'
 import axios from 'axios'
 
-import GridList from '@material-ui/core/GridList';
+import GridList from '@material-ui/core/GridList'
 
 import { useAxiosGet } from '../Hooks/httprequest'
 
-
 const ListAllCocktails = () => {
-
   const [letter, setLetter] = useState('a')
   const [query, setQuery] = useState(null)
 
@@ -28,7 +26,6 @@ const ListAllCocktails = () => {
   const request = useAxiosGet(url)
 
   let order = []
-  
 
   if (request.loading) {
     return <div>Loading...</div>
@@ -37,130 +34,150 @@ const ListAllCocktails = () => {
   if (request.data) {
     return (
       <Container>
-        <Typography style={{marginTop:"20px"}}
+        <Typography
+          style={{ marginTop: '20px' }}
           color='textPrimary'
           gutterBottom
           variant='h4'
           align='center'
-         
         >
           Нај популарни
         </Typography>
 
         <div>
-          <div className='input-container' style={{marginRight:"-40px"}} >
-            <input type='text' onChange={handleChange} 
-            placeholder="Search cocktail"
-           
-             style={{ width: "150px", float: "right",  marginBottom:"20px" }}
-           
-              />
-            
-            <Grid container item xs={12} spacing={3} >          
-          <div className='input-container'>
-            <input type='text' onChange={(e) => setQuery(e.target.value)} />
-            <Button onClick={() => setLetter(query)}>Пребарај</Button>
+          <div className='input-container' style={{ marginRight: '-40px' }}>
+            <Grid container item xs={12} spacing={3}>
+              <div className='input-container'>
+                <input type='text' onChange={(e) => setQuery(e.target.value)} />
+                <Button onClick={() => setLetter(query)}>Пребарај</Button>
 
-            <Grid container justify='space-evenly'>
-              {request.data.drinks
-                ?.filter((item) => {
-                  if (letter == '') {
-                    return item
-                  } else if (
-                    item.strDrink.toLowerCase().includes(letter.toLowerCase())
-                  )
-                    return item
-                })
+                <Grid container justify='space-evenly'>
+                  {request.data.drinks
+                    ?.filter((item) => {
+                      if (letter == '') {
+                        return item
+                      } else if (
+                        item.strDrink
+                          .toLowerCase()
+                          .includes(letter.toLowerCase())
+                      )
+                        return item
+                    })
 
-                .map((item, index) => (
-                  <Card style={{ width: "18rem" , padding:"10px", backgroundColor:'#ecf0f1'}} key={index}>
-                    <CardMedia color='primary' img src={item.strDrinkThumb}  >
-                      <img src={item.strDrinkThumb} width='100' height='100' style={{marginLeft:"45px"}} />
-
-                      <br />
-
-                      <CardContent  justify='space-evenly' style={{marginRight:"20px" }}>
-                        <Typography justify='space-evenly'
-                          color='orange'
-                          noWrap='false'
-                          overflowWrap='break-word'
-                          word-break='break-all'
-                          fontWeight='bold'
-                        >
-                        
-                          <span style={{ fontWeight: '700' }}>   Име: {item.strDrink}</span>
-                        </Typography>
-
-                        <Typography
-                          color='orange'
-                          noWrap='false'
-                          overflowWrap='break-word'
-                          word-break='break-all'
-                        >
-                         
-                          <span style={{ fontWeight: '700' }}> Категорија:{item.strCategory}</span>
-                        </Typography>
-                        <Typography
-                          color='textSecondary'
-                          variant='subtitle2'
-                          overflowWrap='break-word'
-                          word-break='break-all'
-                        >
-                          <span style={{ fontWeight: '700' }}>Состојки:</span>
-                          <br />
-                          {` ${item.strIngredient1} `}
-                          <br />
-                          {` ${item.strIngredient2} `}
-                          <br />
-                          {` ${item.strIngredient3} `}
-                        </Typography>
-                        <Typography
-                          color='textSecondary'
-                          variant='subtitle2'
-                          overflowWrap='break-word'
-                          word-break='break-all'
-                        >
-                          <span style={{ fontWeight: '700' }}>Количина:</span>
-                          <br />
-                          {`${item.strMeasure1}`}
-                        </Typography>
-                        <Typography
-                          color='textSecondary'
-                          variant='subtitle2'
-                          overflowWrap='break-word'
-                          word-break='break-all'
-                        >
-                          <span style={{ fontWeight: '700' }}>Цена:</span>
-                          <br />
-                          {item.strDrink.length * 50}
-                        </Typography>
-                      </CardContent>
-                      <Button variant="warning" style={{marginBottom:"30px",marginLeft:"30px"}} 
-                        onClick={() => {
-                          order.push({
-                            orderName: item.strDrink,
-                            orderCat: item.strCategory,
-                            dose: item.strMeasure1,
-                            price: item.strDrink.length * 50,
-                          })
-
-                          axios
-                            .post(
-                              'https://605b3c3427f0050017c0698d.mockapi.io/ordered',
-                              order[0]
-                            )
-                            .then((m) => alert('Нарачано'))
-                            .catch((error) => console.log(error))
+                    .map((item, index) => (
+                      <Card
+                        style={{
+                          width: '18rem',
+                          padding: '10px',
+                          backgroundColor: '#ecf0f1',
                         }}
+                        key={index}
                       >
-                        Нарачај
-                      </Button>
-                    </CardMedia>
-                  </Card>
-                ))}
-            
-            {/* </GridList> */}
-             
+                        <CardMedia color='primary' img src={item.strDrinkThumb}>
+                          <img
+                            src={item.strDrinkThumb}
+                            width='100'
+                            height='100'
+                            style={{ marginLeft: '45px' }}
+                          />
+
+                          <br />
+
+                          <CardContent
+                            justify='space-evenly'
+                            style={{ marginRight: '20px' }}
+                          >
+                            <Typography
+                              justify='space-evenly'
+                              color='orange'
+                              noWrap='false'
+                              overflowWrap='break-word'
+                              word-break='break-all'
+                              fontWeight='bold'
+                            >
+                              <span style={{ fontWeight: '700' }}>
+                                {' '}
+                                Име: {item.strDrink}
+                              </span>
+                            </Typography>
+
+                            <Typography
+                              color='orange'
+                              noWrap='false'
+                              overflowWrap='break-word'
+                              word-break='break-all'
+                            >
+                              <span style={{ fontWeight: '700' }}>
+                                {' '}
+                                Категорија:{item.strCategory}
+                              </span>
+                            </Typography>
+                            <Typography
+                              color='textSecondary'
+                              variant='subtitle2'
+                              overflowWrap='break-word'
+                              word-break='break-all'
+                            >
+                              <span style={{ fontWeight: '700' }}>
+                                Состојки:
+                              </span>
+                              <br />
+                              {` ${item.strIngredient1} `}
+                              <br />
+                              {` ${item.strIngredient2} `}
+                              <br />
+                              {` ${item.strIngredient3} `}
+                            </Typography>
+                            <Typography
+                              color='textSecondary'
+                              variant='subtitle2'
+                              overflowWrap='break-word'
+                              word-break='break-all'
+                            >
+                              <span style={{ fontWeight: '700' }}>
+                                Количина:
+                              </span>
+                              <br />
+                              {`${item.strMeasure1}`}
+                            </Typography>
+                            <Typography
+                              color='textSecondary'
+                              variant='subtitle2'
+                              overflowWrap='break-word'
+                              word-break='break-all'
+                            >
+                              <span style={{ fontWeight: '700' }}>Цена:</span>
+                              <br />
+                              {item.strDrink.length * 50}
+                            </Typography>
+                          </CardContent>
+                          <Button
+                            variant='warning'
+                            style={{ marginBottom: '30px', marginLeft: '30px' }}
+                            onClick={() => {
+                              order.push({
+                                orderName: item.strDrink,
+                                orderCat: item.strCategory,
+                                dose: item.strMeasure1,
+                                price: item.strDrink.length * 50,
+                              })
+
+                              axios
+                                .post(
+                                  'https://605b3c3427f0050017c0698d.mockapi.io/ordered',
+                                  order[0]
+                                )
+                                .then((m) => alert('Нарачано'))
+                                .catch((error) => console.log(error))
+                            }}
+                          >
+                            Нарачај
+                          </Button>
+                        </CardMedia>
+                      </Card>
+                    ))}
+                </Grid>
+              </div>
             </Grid>
           </div>
         </div>
