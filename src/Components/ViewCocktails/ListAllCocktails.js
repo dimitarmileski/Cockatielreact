@@ -12,12 +12,15 @@ import Input from '@material-ui/core/Input'
 import Link from 'react-router-dom'
 import InputBase from '@material-ui/core/InputBase'
 import axios from 'axios'
+import { useAuth0 } from '@auth0/auth0-react'
 
 import GridList from '@material-ui/core/GridList'
 
 import { useAxiosGet } from '../Hooks/httprequest'
+import LoginButton from '../Authentication/LoginButton'
 
 const ListAllCocktails = () => {
+  const { isAuthenticated } = useAuth0()
   const [letter, setLetter] = useState('a')
   const [query, setQuery] = useState(null)
 
@@ -151,28 +154,38 @@ const ListAllCocktails = () => {
                               {item.strDrink.length * 50}
                             </Typography>
                           </CardContent>
-                          <Button
-                            variant='warning'
-                            style={{ marginBottom: '30px', marginLeft: '30px' }}
-                            onClick={() => {
-                              order.push({
-                                orderName: item.strDrink,
-                                orderCat: item.strCategory,
-                                dose: item.strMeasure1,
-                                price: item.strDrink.length * 50,
-                              })
+                          {isAuthenticated ? (
+                            <Button
+                              variant='warning'
+                              style={{
+                                marginBottom: '30px',
+                                marginLeft: '30px',
+                              }}
+                              onClick={() => {
+                                order.push({
+                                  orderName: item.strDrink,
+                                  orderCat: item.strCategory,
+                                  dose: item.strMeasure1,
+                                  price: item.strDrink.length * 50,
+                                })
 
-                              axios
-                                .post(
-                                  'https://605b3c3427f0050017c0698d.mockapi.io/ordered',
-                                  order[0]
-                                )
-                                .then((m) => alert('Нарачано'))
-                                .catch((error) => console.log(error))
-                            }}
-                          >
-                            Нарачај
-                          </Button>
+                                axios
+                                  .post(
+                                    'https://605b3c3427f0050017c0698d.mockapi.io/ordered',
+                                    order[0]
+                                  )
+                                  .then((m) => alert('Нарачано'))
+                                  .catch((error) => console.log(error))
+                              }}
+                            >
+                              Нарачај
+                            </Button>
+                          ) : (
+                            <div>
+                              <div>логирајте се за да нарачате</div>
+                              <LoginButton />
+                            </div>
+                          )}
                         </CardMedia>
                       </Card>
                     ))}
