@@ -154,38 +154,32 @@ const ListAllCocktails = () => {
                               {item.strDrink.length * 50}
                             </Typography>
                           </CardContent>
-                          {isAuthenticated ? (
-                            <Button
-                              variant='warning'
-                              style={{
-                                marginBottom: '30px',
-                                marginLeft: '30px',
-                              }}
-                              onClick={() => {
-                                order.push({
-                                  orderName: item.strDrink,
-                                  orderCat: item.strCategory,
-                                  dose: item.strMeasure1,
-                                  price: item.strDrink.length * 50,
-                                })
 
-                                axios
-                                  .post(
-                                    'https://605b3c3427f0050017c0698d.mockapi.io/ordered',
-                                    order[0]
-                                  )
-                                  .then((m) => alert('Нарачано'))
-                                  .catch((error) => console.log(error))
-                              }}
-                            >
-                              Нарачај
-                            </Button>
-                          ) : (
-                            <div>
-                              <div>логирајте се за да нарачате</div>
-                              <LoginButton />
-                            </div>
-                          )}
+                          <Button
+                            variant='warning'
+                            style={{
+                              marginBottom: '30px',
+                              marginLeft: '30px',
+                            }}
+                            onClick={() => {
+                              order.push({
+                                orderName: item.strDrink,
+                                orderCat: item.strCategory,
+                                dose: item.strMeasure1,
+                                price: item.strDrink.length * 50,
+                              })
+
+                              axios
+                                .post(
+                                  'https://605b3c3427f0050017c0698d.mockapi.io/ordered',
+                                  order[0]
+                                )
+                                .then((m) => alert('Нарачано'))
+                                .catch((error) => console.log(error))
+                            }}
+                          >
+                            Нарачај
+                          </Button>
                         </CardMedia>
                       </Card>
                     ))}
