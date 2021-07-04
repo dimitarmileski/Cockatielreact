@@ -81,7 +81,6 @@ const HomePage = () => {
               >
                 Нарачај одма
               </Button>
-              )
             </Carousel.Caption>
           </Carousel.Item>
 

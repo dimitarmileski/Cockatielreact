@@ -25,7 +25,7 @@ const PageRouter = () => {
       </Route>
 
       <Route path='/CustomCoctails'>
-        {isAuthenticated ? <AboutUs /> : <PleasLogin />}
+        {isAuthenticated ? <CustomCoctails /> : <PleasLogin />}
       </Route>
 
       <Route path='/AboutUs'>
